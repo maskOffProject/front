@@ -12,6 +12,7 @@
     "react-ga": "^2.7.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^5.0.1",
+    "react-webcam": "^7.0.1",
     "sass": "^1.49.7",
     "text-encoding": "^0.7.0"
   },
