@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
  
-class ImageViewer extends Component {
+class VideoViewer extends Component {
   initialState = {
       src: ''
   }
@@ -10,9 +10,9 @@ class ImageViewer extends Component {
   render() {
       const {src } = this.state | "";
       return (
-        <img style={{maxHeight: "600px"}} id="picture" src={src}></img>
+        <video style={{maxHeight: "600px"}} id="video" src={src}></video>
       );
   }
 }
 
-export default ImageViewer;
+export default VideoViewer;
