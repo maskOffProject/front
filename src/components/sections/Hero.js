@@ -54,7 +54,7 @@ const Hero = ({
             </h1>
             <div className="container-xs">
               <p className="m-0 mb-32 reveal-from-bottom" data-reveal-delay="400">
-              Remove the masks from your favorites photos!<br></br>
+              Remove the masks from your favorite photos!<br></br>
                 start <span className="text-color-primary">NOW</span>
                 </p>
             </div>

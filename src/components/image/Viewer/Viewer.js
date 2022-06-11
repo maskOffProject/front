@@ -12,19 +12,20 @@ const Viewer =({originSrc, newSrc})=>{
   
 
   return (
-    <>{isvideo ?
-    (<>
-      <video autoPlay loop style={{maxHeight: "600px"}} src={originSrc}></video>
+    <div style={{display: "flex"}}>
+    {isvideo ?
+    [
+      <video autoPlay loop style={{maxHeight: "600px"}} src={originSrc}></video>,
       <video autoPlay loop style={{maxHeight: "600px"}}  src={newSrc}></video>
-    </>
-    ):
-    (<>
-      <img style={{maxHeight: "600px"}} src={originSrc}></img>
+    ]
+    :
+    [
+      <img style={{maxHeight: "600px"}} src={originSrc}></img>,
       <img style={{maxHeight: "600px"}}  src={newSrc}></img>
-    </>)
+    ]
     }
     
-    </>
+    </div>
   );
   
 }
