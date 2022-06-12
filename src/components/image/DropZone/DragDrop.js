@@ -3,6 +3,7 @@ import { FileUploader } from "react-drag-drop-files";
 import { TextDecoder } from "text-encoding";
 import Viewer from "../Viewer/Viewer";
 import { sendMediaFile } from "../../../utils/api";
+import Button from "../../elements/Button";
 
 const fileTypes = ["JPG", "PNG", "GIF", "mp4"];
 
@@ -35,7 +36,7 @@ const DragDrop = () => {
       <Viewer originSrc={originBase64File} newSrc={resultBase64File}/>
       
       <FileUploader handleChange={handleChange} name="file" types={fileTypes} />
-      <button id="upload" className="button-15" role="button" onClick={submit}>Upload!</button>
+      <Button id="upload" size={15} color={"primary"} role="button" onClick={submit}>Upload!</Button>
     </div>
   );
 }
