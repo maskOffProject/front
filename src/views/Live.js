@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Webcam from 'react-webcam';
 import Button from '../components/elements/Button';
-import ButtonGroup from '../components/elements/ButtonGroup';
 import Radio from '../components/elements/Radio';
 import Switch from '../components/elements/Switch';
 import Viewer from '../components/image/Viewer/Viewer';
@@ -78,9 +77,9 @@ const Live = () => {
         videoConstraints={videoConstraints}
       />
       {!isLive ?
-        (<><Button color={"primary"} size={15} role="button" onClick={captureAndUpdate}>Capture photo</Button>
-        <Button id="upload" size={15} color={"primary"} role="button" onClick={submit}>Upload!</Button></>):
-        (<><Button id="live" size={15} color={"primary"} role="button" onClick={live}>LIVE</Button>
+        (<><Button color={"primary"} role="button" onClick={captureAndUpdate}>Capture photo</Button>
+        <Button id="upload" color={"primary"} role="button" onClick={submit}>Upload!</Button></>):
+        (<><Button id="live"  color={"primary"} role="button" onClick={live}>LIVE</Button>
         <Switch onClick={() => setIsWorking((prev)=> !prev)} checked={isWorking} rightLabel={"Start Live"} /></>)
       }
       

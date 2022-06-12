@@ -15,6 +15,7 @@ const DragDrop = () => {
   const submit = async () => {
     setOriginBase64File(originBase64File)
     const result = await sendMediaFile(originBase64File);
+    console.log("result: "+result)
     setResultBase64File(result)
   }
 
@@ -25,7 +26,6 @@ const DragDrop = () => {
     reader.onload = () => {
     // Do whatever you want with the file contents
       let binaryStr = reader.result
-      console.log(binaryStr)
       setOriginBase64File(binaryStr);
 
     }
@@ -36,7 +36,7 @@ const DragDrop = () => {
       <Viewer originSrc={originBase64File} newSrc={resultBase64File}/>
       
       <FileUploader handleChange={handleChange} name="file" types={fileTypes} />
-      <Button id="upload" size={15} color={"primary"} role="button" onClick={submit}>Upload!</Button>
+      <Button id="upload"  color={"primary"} role="button" onClick={submit}>Upload!</Button>
     </div>
   );
 }
