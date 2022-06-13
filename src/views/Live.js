@@ -6,6 +6,7 @@ import Switch from '../components/elements/Switch';
 import Viewer from '../components/image/Viewer/Viewer';
 import { sendMediaFile } from '../utils/api';
 
+let uploaded = false;
 const videoConstraints = {
   width: 1280,
   height: 720,
@@ -34,6 +35,7 @@ const Live = () => {
   const live = () => {
     if (isLive) {
       id = setInterval(stream, 500);
+      uploaded = true;
     }
     else {
       clearInterval(id);
@@ -51,6 +53,7 @@ const Live = () => {
     () => {
       const imageSrc = webcamRef.current.getScreenshot();
       setOriginBase64File(imageSrc)
+      uploaded = true;
     },
     [webcamRef]
   );
@@ -58,15 +61,19 @@ const Live = () => {
   const submit = async () => {
     setOriginBase64File(originBase64File)
     const result = await sendMediaFile(originBase64File);
-    setResultBase64File(result)
+    setResultBase64File(result);
+    uploaded = true;
+
   }
   return (
     
   <div className={"page-content"}>
+      
       <Radio onClick={() => setIsLive(false)} checked={!isLive}>{"Photo"}</ Radio>
       <Radio  onClick={() => setIsLive(true)} checked={isLive}> {"Video"}</ Radio>
-      <Viewer originSrc={originBase64File} newSrc={resultBase64File}/>
-     
+
+      {uploaded? (<Viewer originSrc={originBase64File} newSrc={resultBase64File}/>)
+      :
       <Webcam
         audio={false}
         height={720}
@@ -75,16 +82,16 @@ const Live = () => {
         width={1280}
         mirrored={true}
         videoConstraints={videoConstraints}
+        style={{ maxWidth: "80%", margin: "auto"}}
       />
+      }
+
       {!isLive ?
         (<><Button color={"primary"} role="button" onClick={captureAndUpdate}>Capture photo</Button>
         <Button id="upload" color={"primary"} role="button" onClick={submit}>Upload!</Button></>):
         (<><Button id="live"  color={"primary"} role="button" onClick={live}>LIVE</Button>
         <Switch onClick={() => setIsWorking((prev)=> !prev)} checked={isWorking} rightLabel={"Start Live"} /></>)
       }
-      
-      
-      
     </div>
     
   );
