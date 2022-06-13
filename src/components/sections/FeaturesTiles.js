@@ -124,7 +124,7 @@ const FeaturesTiles = ({
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
                     <Image
-                      src={require('./../../assets/images/maya.png')}
+                      src={require('./../../assets/images/elisha.png')}
                       style={{borderRadius: "50%"}}
                       alt="Features tile icon 05"
                       width={100}
