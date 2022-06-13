@@ -6,7 +6,6 @@ import Radio from '../components/elements/Radio';
 import Viewer from '../components/image/Viewer/Viewer';
 import { sendMediaFile } from '../utils/api';
 
-let showResults = false;
 const videoConstraints = {
   width: 1280,
   height: 720,
@@ -21,6 +20,7 @@ const Live = () => {
   const [id, setId] = useState('');
   const [originBase64File, setOriginBase64File] = useState('');
   const [resultBase64File, setResultBase64File] = useState('');
+  const [showResults, setShowResults] = useState(false);
   const webcamRef = React.useRef(null);
 
   const saveFile = async () => {
@@ -69,7 +69,7 @@ const Live = () => {
       const imageSrc = webcamRef.current.getScreenshot();
       setOriginBase64File(imageSrc);
       setResultBase64File('');
-      showResults = true;
+      setShowResults(true);
     },
     [webcamRef]
   );
@@ -81,6 +81,10 @@ const Live = () => {
 
   }
 
+  const retakePhoto = () => {
+    setShowResults(false);
+  }
+
   return (
     
   <div className={"page-content"}>
@@ -88,7 +92,7 @@ const Live = () => {
       <Radio  className="radio" onClick={() => {setIsLive(false); setOriginBase64File(''); setResultBase64File('');showResults = false;}} checked={!isLive}>{"Photo"}</ Radio>
       <Radio className="radio" onClick={() => {setIsLive(true); setOriginBase64File(''); setResultBase64File(''); recordWebcam.open(); showResults = false;}} checked={isLive}> {"Video"}</ Radio>
     </div>
-    {showResults || recordWebcam.status == "PREVIEW"?
+    {showResults || (recordWebcam.status == "PREVIEW" && isLive)?
     <Viewer isLiveVideo={isLive} originSrc={originBase64File} newSrc={resultBase64File}/>
     :
       !isLive ? <Webcam
@@ -110,12 +114,20 @@ const Live = () => {
       
       {!isLive ?
         (<>
-          <div style={{ margin: "auto"}}> 
+          {!showResults?
+            <div style={{ margin: "auto"}}> 
             <Button color={"primary"} role="button" onClick={captureAndUpdate}>Capture photo</Button>
           </div>
+          :
+          [<div style={{ margin: "auto"}}> 
+            <Button color={"primary"} role="button" onClick={retakePhoto}>Retake photo</Button>
+          </div>,
           <div style={{ margin: "auto"}}> 
             <Button id="upload" color={"primary"} role="button" onClick={submit}>Upload!</Button>
-          </div>
+          </div>]
+          }
+          
+          
         </>):
         (<div>{recordWebcam.status == "OPEN" ? <Button color={"primary"} onClick={recordWebcam.start}>Start recording</Button> : null}
         {recordWebcam.status == "RECORDING" ? <Button color={"primary"} onClick={recordWebcam.stop}>Stop recording</Button> : null}
