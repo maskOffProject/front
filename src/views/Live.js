@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import { useRecordWebcam } from 'react-record-webcam';
 import Webcam from 'react-webcam';
-import { useRecordWebcam  } from 'react-record-webcam'
 import Button from '../components/elements/Button';
 import Radio from '../components/elements/Radio';
-import Switch from '../components/elements/Switch';
 import Viewer from '../components/image/Viewer/Viewer';
 import { sendMediaFile } from '../utils/api';
 
@@ -67,7 +66,8 @@ const Live = () => {
   const captureAndUpdate = React.useCallback(
     () => {
       const imageSrc = webcamRef.current.getScreenshot();
-      setOriginBase64File(imageSrc)
+      setOriginBase64File(imageSrc);
+      setResultBase64File('');
     },
     [webcamRef]
   );
@@ -77,12 +77,15 @@ const Live = () => {
     const result = await sendMediaFile(originBase64File);
     setResultBase64File(result)
   }
+
   return (
     
   <div className={"page-content"}>
-      <Radio onClick={() => setIsLive(false)} checked={!isLive}>{"Photo"}</ Radio>
-      <Radio  onClick={() => {setIsLive(true); recordWebcam.open()}} checked={isLive}> {"Video"}</ Radio>
-      <Viewer originSrc={originBase64File} newSrc={resultBase64File}/>
+    <div className="radio-content">
+      <Radio  className="radio" onClick={() => {setIsLive(false); setOriginBase64File(''); setResultBase64File('');}} checked={!isLive}>{"Photo"}</ Radio>
+      <Radio className="radio" onClick={() => {setIsLive(true); setOriginBase64File(''); setResultBase64File(''); recordWebcam.open()}} checked={isLive}> {"Video"}</ Radio>
+    </div>
+    <Viewer isLiveVideo={isLive} originSrc={originBase64File} newSrc={resultBase64File}/>
      
       {!isLive ? <Webcam
         audio={false}
@@ -95,23 +98,25 @@ const Live = () => {
       /> :
       (<div>
       <p>Camera status: {recordWebcam.status}</p>
-        {/* <button onClick={recordWebcam.retake}>Retake recording</button>} */}
-        {/* <button onClick={recordWebcam.stop}>Stop recording</button> */}
-        {/* <button onClick={saveFile}>Save file to server</button> */}
+
         {recordWebcam.status != "PREVIEW" ? <video style={{transform: 'scaleX(-1)'}} ref={recordWebcam.webcamRef} autoPlay muted /> : null}
         <video style={{transform: 'scaleX(-1)'}}  ref={recordWebcam.previewRef} autoPlay muted loop />
       </div>)}
       
       {!isLive ?
-        (<><Button color={"primary"} role="button" onClick={captureAndUpdate}>Capture photo</Button>
-        <Button id="upload" color={"primary"} role="button" onClick={submit}>Upload!</Button></>):
+        (<>
+          <div style={{ margin: "auto"}}> 
+            <Button color={"primary"} role="button" onClick={captureAndUpdate}>Capture photo</Button>
+          </div>
+          <div style={{ margin: "auto"}}> 
+            <Button id="upload" color={"primary"} role="button" onClick={submit}>Upload!</Button>
+          </div>
+        </>):
         (<div>{recordWebcam.status == "OPEN" ? <Button color={"primary"} onClick={recordWebcam.start}>Start recording</Button> : null}
         {recordWebcam.status == "RECORDING" ? <Button color={"primary"} onClick={recordWebcam.stop}>Stop recording</Button> : null}
         {recordWebcam.status == "PREVIEW" ? <Button color={"primary"} onClick={recordWebcam.retake}>Retake recording</Button> : null}
         {recordWebcam.status == "PREVIEW" ? <Button color={"primary"} onClick={saveFile}>Upload!</Button> : null}</div>
         )
-        // (<><Button id="live"  color={"primary"} role="button" onClick={live}>LIVE</Button>
-        // <Switch onClick={() => setIsWorking((prev)=> !prev)} checked={isWorking} rightLabel={"Start Live"} /></>)
       }
       
       

@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
-import ButtonGroup from '../elements/ButtonGroup';
-import Button from '../elements/Button';
-import Image from '../elements/Image';
-import Modal from '../elements/Modal';
-import DragDrop from '../image/DropZone/DragDrop';
+
 
 const propTypes = {
   ...SectionProps.types
