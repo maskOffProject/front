@@ -5,7 +5,7 @@ const Viewer =({originSrc, newSrc})=>{
 
   const [isvideo, setIsVideo] = useState(false);
   useEffect(()=>{
-    setIsVideo(originSrc.includes('video/mp4'))
+    setIsVideo(originSrc.includes('video'))
   },[originSrc,newSrc])
   
   
