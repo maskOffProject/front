@@ -30,5 +30,25 @@
 
 .site-content {
     flex: 1 0 auto;
-	margin-top: 100px;
+	display: flex;
+}
+
+.page-content {
+	display: flex;
+    flex-direction: column;
+    flex: 1;
+	margin: 80px 15px 15px 15px;
+}
+
+.viewer {
+	display: flex;
+    flex-direction: row;
+	flex:1;
+	margin-bottom: 15px;
+}
+
+.viewer-item {
+	flex:1;
+	margin: 10px;
+    border: 1px #9CA9B3 solid;
 }

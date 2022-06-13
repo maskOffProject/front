@@ -64,6 +64,7 @@ const FeaturesTiles = ({
                   <div className="features-tiles-item-image mb-16">
                     <Image
                       src={require('./../../assets/images/maya.png')}
+                      style={{borderRadius: "50%"}}
                       alt="Features tile icon 02"
                       width={100}
                       height={100} />
@@ -83,6 +84,7 @@ const FeaturesTiles = ({
                   <div className="features-tiles-item-image mb-16">
                     <Image
                       src={require('./../../assets/images/inbal.png')}
+                      style={{borderRadius: "50%"}}
                       alt="Features tile icon 03"
                       width={100}
                       height={100} />
@@ -103,6 +105,7 @@ const FeaturesTiles = ({
                   <div className="features-tiles-item-image mb-16">
                     <Image
                       src={require('./../../assets/images/reut.png')}
+                      style={{borderRadius: "50%"}}
                       alt="Features tile icon 05"
                       width={100}
                       height={100} />
@@ -122,6 +125,7 @@ const FeaturesTiles = ({
                   <div className="features-tiles-item-image mb-16">
                     <Image
                       src={require('./../../assets/images/maya.png')}
+                      style={{borderRadius: "50%"}}
                       alt="Features tile icon 05"
                       width={100}
                       height={100} />

@@ -62,7 +62,7 @@ const Live = () => {
   }
   return (
     
-  <div>
+  <div className={"page-content"}>
       <Radio onClick={() => setIsLive(false)} checked={!isLive}>{"Photo"}</ Radio>
       <Radio  onClick={() => setIsLive(true)} checked={isLive}> {"Video"}</ Radio>
       <Viewer originSrc={originBase64File} newSrc={resultBase64File}/>

@@ -32,12 +32,15 @@ const DragDrop = () => {
     reader.readAsDataURL(file)
   };
   return (
-    <div>
+    <>
       <Viewer originSrc={originBase64File} newSrc={resultBase64File}/>
-      
-      <FileUploader handleChange={handleChange} name="file" types={fileTypes} />
-      <Button id="upload"  color={"primary"} role="button" onClick={submit}>Upload!</Button>
-    </div>
+      <div style={{ margin: "auto", marginBottom: "15px"}}> 
+        <FileUploader  handleChange={handleChange} name="file" types={fileTypes} />
+      </div>
+      <div style={{ margin: "auto"}}> 
+        <Button id="upload"  color={"primary"} role="button" onClick={submit}>Upload!</Button>
+      </div>
+    </>
   );
 }
 
