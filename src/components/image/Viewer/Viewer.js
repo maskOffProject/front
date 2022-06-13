@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react/cjs/react.development';
  
-const Viewer =({originSrc, newSrc})=>{
+const Viewer =({isLiveVideo,originSrc, newSrc})=>{
 
   const [isvideo, setIsVideo] = useState(false);
   useEffect(()=>{
-    setIsVideo(originSrc.includes('video/mp4'))
+    setIsVideo(originSrc.includes('video'))
   },[originSrc,newSrc])
   
   
@@ -13,8 +13,8 @@ const Viewer =({originSrc, newSrc})=>{
   return (
     <div className='viewer'>{isvideo ?
     (<>
-      <video autoPlay loop className='viewer-item' src={originSrc}></video>
-      <video autoPlay loop className='viewer-item' src={newSrc && `data:video/mp4;base64,${newSrc}`}></video>
+      <video autoPlay loop className='viewer-item' style={isLiveVideo ?{transform: "scaleX(-1)" }:{}} src={originSrc}></video>
+      <video autoPlay loop className='viewer-item' style={isLiveVideo?{transform: "scaleX(-1)" }:{}} src={newSrc && `data:video/mp4;base64,${newSrc}`}></video>
     </>
     ):
     (<>

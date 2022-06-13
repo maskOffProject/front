@@ -40,6 +40,11 @@
 	margin: 80px 15px 15px 15px;
 }
 
+.radio-content{
+	display: flex;
+    flex-direction: row;
+}
+
 .viewer {
 	display: flex;
     flex-direction: row;
@@ -52,4 +57,5 @@
 	margin: 10px;
     border: 1px #9CA9B3 solid;
 	max-width: 50%;
+	max-height: 100%;
 }

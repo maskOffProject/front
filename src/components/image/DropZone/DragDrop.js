@@ -27,6 +27,7 @@ const DragDrop = () => {
     // Do whatever you want with the file contents
       let binaryStr = reader.result
       setOriginBase64File(binaryStr);
+      setResultBase64File('');
 
     }
     reader.readAsDataURL(file)

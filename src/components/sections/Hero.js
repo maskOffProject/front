@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { SectionProps } from '../../utils/SectionProps';
-import ButtonGroup from '../elements/ButtonGroup';
-import Button from '../elements/Button';
-import Image from '../elements/Image';
-import Modal from '../elements/Modal';
-import DragDrop from '../image/DropZone/DragDrop';
+
 
 const propTypes = {
   ...SectionProps.types
@@ -59,15 +55,6 @@ const Hero = ({
                 </p>
             </div>
           </div>
-          {/* <div className='center'>
-            <DragDrop /> 
-          </div>
-          <Modal
-            id="video-modal"
-            show={videoModalActive}
-            handleClose={closeModal}
-            video="https://player.vimeo.com/video/174002812"
-            videoTag="iframe" /> */}
         </div>
       </div>
     </section>

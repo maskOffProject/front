@@ -118,7 +118,7 @@ const Header = ({
                       <Link to="/Live" onClick={closeMenu}>Live</Link>
                     </li>
                     <li>
-                      <Link to="/Album" onClick={closeMenu}>Try it yourself!</Link>
+                      <Link to="/Album" onClick={closeMenu}>Fix My Album</Link>
                     </li>
                   </ul>
                   {!hideSignin &&
